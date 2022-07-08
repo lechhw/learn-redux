@@ -4,8 +4,11 @@ import { Provider } from 'react-redux';
 import { legacy_createStore } from 'redux';
 import App from './app';
 import rootReducer from './modules';
+import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
 
-const store = legacy_createStore(rootReducer); // 스토어 만들기
+const store = legacy_createStore(rootReducer, composeWithDevTools()); // 스토어 만들기
+// composeWithDevTools 를 사용하여 리덕스 개발자 도구 활성화
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
