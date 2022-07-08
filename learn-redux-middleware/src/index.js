@@ -5,10 +5,14 @@ import App from './app';
 import { Provider } from 'react-redux';
 import { applyMiddleware, legacy_createStore } from 'redux';
 import rootReducer from './modules';
-import myLogger from './middlewares/myLogger';
+import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = legacy_createStore(rootReducer, applyMiddleware(myLogger));
+const store = legacy_createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger)) // 여러개의 미들웨어를 적용할 수 있다.
+);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
